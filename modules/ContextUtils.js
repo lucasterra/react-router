@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
 
@@ -23,7 +23,7 @@ export function ContextProviderEnhancer(ComposedComponent, name, options) {
   const subscribeKey = `${contextName}/subscribe`
   const withRef = options && options.withRef
 
-  return class extends React.Component {
+  return class extends Component {
     static childContextTypes = {
       [contextName]: contextProviderShape.isRequired
     }
@@ -78,7 +78,7 @@ export function ContextProviderEnhancer(ComposedComponent, name, options) {
     }
 
     render() {
-      const props = { ...this.props };
+      const props = { ...this.props }
       if (withRef) {
         props.withRef = (c) => {
           this.wrappedInstance = c
@@ -97,7 +97,7 @@ export function ContextSubscriberEnhancer(ComposedComponent, name, options) {
   const unsubscribeKey = `${contextName}/unsubscribe`
   const withRef = options && options.withRef
 
-  return class extends React.Component {
+  return class extends Component {
     static displayName = `ContextSubscriberEnhancer(${ComposedComponent.displayName}, ${contextName})`;
     static contextTypes = {
       [contextName]: contextProviderShape
