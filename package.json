@@ -25,7 +25,8 @@
     "start": "node examples/server.js",
     "test": "npm run lint && npm run test-node && npm run test-browser",
     "test-browser": "cross-env NODE_ENV=test karma start",
-    "test-node": "cross-env NODE_ENV=test mocha --compilers js:babel-register tests.node.js"
+    "test-node": "cross-env NODE_ENV=test mocha --compilers js:babel-register tests.node.js",
+  , "postinstall" : "npm run build-cjs && npm run build-es"
   },
   "authors": [
     "Ryan Florence",

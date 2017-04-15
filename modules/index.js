@@ -1,7 +1,5 @@
 /* components */
 export Router from './Router'
-// export Link from './Link'
-// export IndexLink from './IndexLink'
 export withRouter from './withRouter'
 
 /* components (configuration) */
