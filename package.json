@@ -16,7 +16,7 @@
   "homepage": "https://github.com/ReactTraining/react-router#readme",
   "bugs": "https://github.com/ReactTraining/react-router/issues",
   "scripts": {
-    "build": "npm run build-cjs && npm run build-es",
+    "build": "npm run build-cjs",
     "build-cjs": "rimraf lib && cross-env BABEL_ENV=cjs babel ./modules -d lib --ignore __tests__",
     "build-es": "rimraf es && cross-env BABEL_ENV=es babel ./modules -d es --ignore __tests__",
     "build-umd": "cross-env NODE_ENV=development webpack modules/index.js umd/ReactRouter.js",
@@ -25,8 +25,7 @@
     "start": "node examples/server.js",
     "test": "npm run lint && npm run test-node && npm run test-browser",
     "test-browser": "cross-env NODE_ENV=test karma start",
-    "test-node": "cross-env NODE_ENV=test mocha --compilers js:babel-register tests.node.js",
-    "postinstall" : "npm run build-cjs && npm run build-es"
+    "test-node": "cross-env NODE_ENV=test mocha --compilers js:babel-register tests.node.js"
   },
   "authors": [
     "Ryan Florence",
