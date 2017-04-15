@@ -41,6 +41,14 @@ function LinkEnhancer(WrappedComponent, options = {}) {
 
       // No autobind in classes
       this.handleClick = this.handleClick.bind(this)
+      this.options = {}
+      if (options.onClick) {
+        this.options.onClick = options.onClick.bind(this)
+      }
+
+      if (options.onNavigate) {
+        this.options.onNavigate = options.onNavigate.bind(this)
+      }
     }
 
     handleClick(event) {
