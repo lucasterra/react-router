@@ -16,7 +16,7 @@ function resolveToLocation(to, router) {
   return typeof to === 'function' ? to(router.location) : to
 }
 
-function LinkEnhancer(WrappedComponent, options) {
+function LinkEnhancer(WrappedComponent, options = {}) {
   class EnhancedLink extends PureComponent {
     static contextTypes = {
       router: routerShape
@@ -49,6 +49,9 @@ function LinkEnhancer(WrappedComponent, options) {
       if (onClick)
         onClick(event)
 
+      if (this.options.onClick)
+        this.options.onClick(event)
+
       if (event.defaultPrevented)
         return
 
@@ -70,6 +73,9 @@ function LinkEnhancer(WrappedComponent, options) {
 
       if (onNavigate)
         onNavigate(event)
+
+      if (this.options.onNavigate)
+        this.options.onNavigate(event)
 
       router.push(resolveToLocation(to, router))
     }
