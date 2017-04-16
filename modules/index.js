@@ -1,6 +1,9 @@
 /* components */
 export Router from './Router'
 export withRouter from './withRouter'
+export Link from './Link'
+export IndexLink from './IndexLink'
+export LinkEnhancer from './LinkEnhancer'
 
 /* components (configuration) */
 export IndexRedirect from './IndexRedirect'

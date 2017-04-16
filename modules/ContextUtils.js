@@ -172,9 +172,3 @@ export function ContextSubscriberEnhancer(ComposedComponent, name, options) {
     }
   }
 }
-
-// TODO: Remove this once React 16 is out?
-export {
-  ContextProvider,
-  ContextSubscriber
-} from './ContextUtilsMixins'

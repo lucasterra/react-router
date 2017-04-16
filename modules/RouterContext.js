@@ -97,6 +97,6 @@ class RouterContext extends Component {
 }
 
 const EnhancedRouterContext = ContextProviderEnhancer(RouterContext, 'router')
-EnhancedRouterContext.displayName = 'RouterContext';
+EnhancedRouterContext.displayName = 'RouterContext'
 
 export default EnhancedRouterContext

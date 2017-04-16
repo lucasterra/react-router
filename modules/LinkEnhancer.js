@@ -16,7 +16,19 @@ function resolveToLocation(to, router) {
   return typeof to === 'function' ? to(router.location) : to
 }
 
-function LinkEnhancer(WrappedComponent, options = {}) {
+function isRouteActive(router, to, onlyActiveOnIndex) {
+  let href = null
+  let isActive = false
+  if (router && to) {
+    const toLocation = resolveToLocation(to, router)
+    href = router.createHref(toLocation)
+    isActive = router.isActive(toLocation, onlyActiveOnIndex)
+  }
+
+  return { isActive, href }
+}
+
+function LinkEnhancer(WrappedComponent) {
   class EnhancedLink extends PureComponent {
     static contextTypes = {
       router: routerShape
@@ -36,19 +48,29 @@ function LinkEnhancer(WrappedComponent, options = {}) {
       onlyActiveOnIndex: false
     }
 
-    constructor(props) {
-      super(props)
+    constructor(props, context) {
+      super(props, context)
+
+      const { router } = context
+      const { to, onlyActiveOnIndex } = props
+      this.state = isRouteActive(router, to, onlyActiveOnIndex)
 
       // No autobind in classes
       this.handleClick = this.handleClick.bind(this)
-      this.options = {}
-      if (options.onClick) {
-        this.options.onClick = options.onClick.bind(this)
-      }
+    }
 
-      if (options.onNavigate) {
-        this.options.onNavigate = options.onNavigate.bind(this)
+    componentDidMount() {
+      const { onNavigate } = this.props
+      if (this.state.isActive && onNavigate) {
+        onNavigate()
       }
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+      const { router } = nextContext
+      const { to, onlyActiveOnIndex } = nextProps
+
+      this.setState(isRouteActive(router, to, onlyActiveOnIndex))
     }
 
     handleClick(event) {
@@ -56,9 +78,6 @@ function LinkEnhancer(WrappedComponent, options = {}) {
 
       if (onClick)
         onClick(event)
-
-      if (this.options.onClick)
-        this.options.onClick(event)
 
       if (event.defaultPrevented)
         return
@@ -82,34 +101,23 @@ function LinkEnhancer(WrappedComponent, options = {}) {
       if (onNavigate)
         onNavigate(event)
 
-      if (this.options.onNavigate)
-        this.options.onNavigate(event)
-
       router.push(resolveToLocation(to, router))
     }
 
     render() {
       /*eslint no-unused-vars: ["error", { "ignoreRestSiblings": true }]*/
       const { to, onlyActiveOnIndex, withRef, onClick, onNavigate, ...props } = this.props
+      const { isActive, href } = this.state
+      props.active = isActive
 
-      // Ignore if rendered outside the context of router to simplify unit testing.
-      const { router } = this.context
-      props.active = false
+      if (!href) {
+        return <WrappedComponent {...props}/>
+      }
+      
+      props.href = href
 
-      if (router) {
-        // If user does not specify a `to` prop, return an empty anchor tag.
-        if (!to) {
-          return <WrappedComponent {...props}/>
-        }
-
-        const toLocation = resolveToLocation(to, router)
-        props.href = router.createHref(toLocation)
-
-        if (withRef) {
-          props.ref = (c) => withRef(c)
-        }
-
-        props.active = router.isActive(toLocation, onlyActiveOnIndex)
+      if (withRef) {
+        props.ref = (c) => withRef(c)
       }
 
       return <WrappedComponent onClick={this.handleClick} {...props}/>
