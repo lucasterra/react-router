@@ -26,7 +26,8 @@
     "test": "npm run lint && npm run test-node && npm run test-browser",
     "test-browser": "cross-env NODE_ENV=test karma start",
     "test-node": "cross-env NODE_ENV=test mocha --compilers js:babel-register tests.node.js",
-    "postinstall": "npm run build-cjs"
+    "postinstall": "npm run build-cjs",
+    "prepublish": "npm run build-cjs"
   },
   "authors": [
     "Ryan Florence",
