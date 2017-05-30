@@ -9,6 +9,7 @@
     "lib",
     "umd"
   ],
+  "types": "typings/index.d.ts",
   "main": "lib/index",
   "module": "es/index",
   "jsnext:main": "es/index",
