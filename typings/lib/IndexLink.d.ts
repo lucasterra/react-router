@@ -1,7 +1,7 @@
 import { ComponentClass, CSSProperties, HTMLProps } from "react";
 import { Location, LocationDescriptor } from "history";
 
-type ToLocationFunction = (location: Location) => LocationDescriptor;
+export type ToLocationFunction = (location: Location) => LocationDescriptor;
 
 export interface IndexLinkProps extends HTMLProps<any> {
     to: LocationDescriptor | ToLocationFunction;

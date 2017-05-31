@@ -40,7 +40,8 @@ export { default as Router } from "./lib/Router";
 export { default as Link } from "./lib/Link";
 export { default as IndexLink } from "./lib/IndexLink";
 export { default as withRouter } from "./lib/withRouter";
-export { default as LinkEnhancer } from "./lib/withRouter";
+export { default as LinkEnhancer } from "./lib/LinkEnhancer";
+export { LinkProperties as LinkEnhancedProps } from "./lib/LinkEnhancer";
 
 /* components (configuration) */
 export { default as IndexRedirect } from "./lib/IndexRedirect";

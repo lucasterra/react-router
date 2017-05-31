@@ -9,7 +9,7 @@ import {
     RoutePattern,
     RouterState
 } from "react-router";
-import { IndexRouteProps } from "react-router/lib/IndexRoute";
+import { IndexRouteProps } from "./IndexRoute";
 
 export interface RouteProps extends IndexRouteProps {
     path?: RoutePattern;
