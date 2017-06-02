@@ -13,7 +13,7 @@ export interface LinkProperties {
   active?: boolean;
 }
 
-declare function LinkEnhancer<P, S>(component: ComponentConstructor<P> & S): ComponentClass<P & LinkProperties> & S;
-declare function LinkEnhancer<P>(component: ComponentConstructor<P>): ComponentClass<P & LinkProperties>;
+declare function LinkEnhancer<P, S>(component: ComponentConstructor<P & LinkProperties> & S): ComponentClass<P & LinkProperties> & S;
+declare function LinkEnhancer<P>(component: ComponentConstructor<P & LinkProperties>): ComponentClass<P & LinkProperties>;
 
 export default LinkEnhancer;
