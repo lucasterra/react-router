@@ -49,7 +49,7 @@
     "@types/history": "^3.2.1",
     "@types/react": "^15.6.1",
     "@types/react-dom": "^15.5.1",
-    "babel-cli": "^6.11.4",s
+    "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
     "babel-eslint": "^7.2.1",
     "babel-loader": "^6.2.4",
