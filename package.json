@@ -8,7 +8,7 @@
     "es",
     "lib",
     "umd",
-	"typings"
+    "typings"
   ],
   "types": "typings/index.d.ts",
   "main": "lib/index",
@@ -40,14 +40,16 @@
     "hoist-non-react-statics": "^1.2.0",
     "invariant": "^2.2.1",
     "loose-envify": "^1.2.0",
-    "prop-types": "^15.5.6",
     "warning": "^3.0.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0"
+    "react": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.11.4",
+    "@types/history": "^3.2.1",
+    "@types/react": "^15.6.1",
+    "@types/react-dom": "^15.5.1",
+    "babel-cli": "^6.11.4",s
     "babel-core": "^6.13.2",
     "babel-eslint": "^7.2.1",
     "babel-loader": "^6.2.4",
@@ -61,6 +63,7 @@
     "babel-register": "^6.11.6",
     "bundle-loader": "^0.5.4",
     "codecov": "^2.1.0",
+    "create-react-class": "^15.6.0",
     "cross-env": "^3.2.4",
     "css-loader": "^0.27.3",
     "eslint": "^3.2.0",
@@ -80,6 +83,7 @@
     "karma-webpack": "^2.0.3",
     "mocha": "^3.2.0",
     "pretty-bytes": "^4.0.2",
+    "prop-types": "^15.5.10",
     "qs": "^6.2.1",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",

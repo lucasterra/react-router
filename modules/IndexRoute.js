@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { func } from 'prop-types'
 import warning from './routerWarning'
 import invariant from 'invariant'

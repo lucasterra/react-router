@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { bool, object, string, func, oneOfType } from 'prop-types'
 import invariant from 'invariant'
 import { routerShape } from './PropTypes'
@@ -29,7 +29,7 @@ function isRouteActive(router, to, onlyActiveOnIndex) {
 }
 
 function LinkEnhancer(WrappedComponent) {
-  class EnhancedLink extends PureComponent {
+  class EnhancedLink extends Component {
     static contextTypes = {
       router: routerShape
     }
@@ -124,7 +124,7 @@ function LinkEnhancer(WrappedComponent) {
     }
   }
 
-  return ContextSubscriberEnhancer(EnhancedLink, 'router', { withRef: true })
+  return ContextSubscriberEnhancer(EnhancedLink, 'router', { withRef: false })
 }
 
 export default LinkEnhancer
